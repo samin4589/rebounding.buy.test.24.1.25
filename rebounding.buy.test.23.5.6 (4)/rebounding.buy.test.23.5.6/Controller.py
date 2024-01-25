@@ -1047,7 +1047,7 @@ class XReal_K3__(QAxWidget, QThread):
 
 
                             if (fll <= self.price):  # 현재가 조건
-                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo,"","")
                                 self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-0퍼센트")
