@@ -368,6 +368,9 @@ class XReal_S3__(QAxWidget, QThread):
                 quanti = self.savedstockitem.item_jango[self.scode][4]  # 수량
                 medo = 1
 
+                sss = 101
+                sssddd = self.savedstockitem.item_jango[self.scode][6]
+
                 try:
                     if int(self.savedstockitem.item_view[self.scode][14]) == 0:
                         self.savedstockitem.item_jango[self.scode][11] = 99
@@ -386,35 +389,41 @@ class XReal_S3__(QAxWidget, QThread):
                         if int(self.savedstockitem.item_jango[self.scode][12]) == 2:  # 익절선택-2자동
                             if (fasc <= self.price):  # 현재가 조건
                                 self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
                         elif int(self.savedstockitem.item_jango[self.scode][12]) == 1:  # 익절선택-1수동
                             if (fsc <= self.price):  # 현재가 조건
                                 self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-1수동")
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
@@ -426,23 +435,27 @@ class XReal_S3__(QAxWidget, QThread):
 
                             if (fll <= self.price):  # 현재가 조건
                                 self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-0퍼센트")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
                     # if (fsc <= self.price) or (fasc <= self.price) or (fsl > self.price) or (fasl > self.price):
                     #     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                #self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                     #     print("매도 감시")
 
 
@@ -967,6 +980,9 @@ class XReal_K3__(QAxWidget, QThread):
                 quanti = self.savedstockitem.item_jango[self.scode][4] # 수량
                 medo = 1
 
+                sss = 101
+                sssddd = self.savedstockitem.item_jango[self.scode][6]
+
                 try:
                     if int(self.savedstockitem.item_view[self.scode][14]) == 0:
                         self.savedstockitem.item_jango[self.scode][11] = 99
@@ -985,35 +1001,41 @@ class XReal_K3__(QAxWidget, QThread):
                         if int(self.savedstockitem.item_jango[self.scode][12]) == 2:  # 익절선택-2자동
                             if (fasc <= self.price):  # 현재가 조건
                                 self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
                         elif int(self.savedstockitem.item_jango[self.scode][12]) == 1:  # 익절선택-1수동
                             if (fsc <= self.price):  # 현재가 조건
                                 self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-1수동")
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
@@ -1021,11 +1043,11 @@ class XReal_K3__(QAxWidget, QThread):
                             p = self.savedstockitem.item_jango[self.scode][11]  # 프로익절가
                             ll = float(l) / 100 * (100 + float(p))
                             fll = round(float(ll))
-                            sss = 101
-                            sssddd = self.savedstockitem.item_jango[self.scode][6]
+
 
 
                             if (fll <= self.price):  # 현재가 조건
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
                                 self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-0퍼센트")
@@ -1033,12 +1055,14 @@ class XReal_K3__(QAxWidget, QThread):
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
                                     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
@@ -1046,6 +1070,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                     # if (fsc <= self.price) or (fasc <= self.price) or (fsl > self.price) or (fasl > self.price):
                     #     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                #self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                     #     print("매도 감시")
 
             if self.scode in self.savedstockitem.item_view.keys():
