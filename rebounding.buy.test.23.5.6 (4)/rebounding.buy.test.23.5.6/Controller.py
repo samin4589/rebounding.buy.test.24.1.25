@@ -253,10 +253,13 @@ class t0424(QAxWidget, QThread):
 
                             #익절선택 자동 2 수동 1 퍼센트 0 / 손절 선택 자동 2 수동 1
                     else:
+
                         if expcode not in self.savedstockitem.item_jango.keys():
                             self.savedstockitem.item_jango[expcode] = ['', '', '', '', '', '', '', '9999999', '0',
                                                                        '9999999', '0', '퍼샌트익절가', '익절선택', '손절선택', '2',
                                                                        "최저점", '당일시가']
+
+
 
                 except:
 
@@ -265,7 +268,6 @@ class t0424(QAxWidget, QThread):
                                                                    '9999999', '0', '퍼샌트익절가', '익절선택', '손절선택', '2',
                                                                    "최저점", '당일시가']
 
-                        # 익절선택 자동 2 수동 1 퍼센트 0 / 손절 선택 자동 2 수동 1
 
                 #tt = self.savedstockitem.item_jango[expcode]
                 self.savedstockitem.item_jango[expcode][0] = str(expcode)
@@ -277,6 +279,8 @@ class t0424(QAxWidget, QThread):
                 self.savedstockitem.item_jango[expcode][6] = self.GetFieldData("CSPAQ12300OutBlock3", "LoanDt", i)
                 if self.savedstockitem.item_jango[expcode][6] == "":
                     self.savedstockitem.item_jango[expcode][6] = '0'
+
+
 
                 self.t1102.request(expcode)
 
