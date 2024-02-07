@@ -373,6 +373,18 @@ class XReal_S3__(QAxWidget, QThread):
                 medo = 1
 
                 try:
+                    if int(self.savedstockitem.item_jango[self.scode][6]) != 0:
+                        sss = 101
+                        sssddd = self.savedstockitem.item_jango[self.scode][6]
+
+                    else:
+                        sss = "000"
+                        sssddd = ""
+                except:
+                    pass
+
+
+                try:
                     if int(self.savedstockitem.item_view[self.scode][14]) == 0:
                         self.savedstockitem.item_jango[self.scode][11] = 99
                         self.savedstockitem.item_jango[self.scode][12] = 2
@@ -427,9 +439,10 @@ class XReal_S3__(QAxWidget, QThread):
                             ll = float(l) / 100 * (100 + float(p))
                             fll = float(round(ll))
 
-
+                            print(fll)
                             if (fll <= self.price):  # 현재가 조건
-                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo, sss, sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-0퍼센트")
 
@@ -1038,6 +1051,7 @@ class XReal_K3__(QAxWidget, QThread):
                             ll = float(l) / 100 * (100 + float(p))
                             fll = round(float(ll))
 
+                            print(fll)
 
 
 

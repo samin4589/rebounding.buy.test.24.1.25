@@ -159,7 +159,7 @@ class chartindex(QThread):
             # print(b)
             # self.RemoveService("ChartIndex", "")
             # self.SetFieldData("ChartIndexInBlock", "indexid", 0, b)
-            self.SetFieldData("ChartIndexInBlock", "indexname", 0, "피보나치매수매도1")
+            self.SetFieldData("ChartIndexInBlock", "indexname", 0, "피보나치매수매도.그리드.9일")
             self.SetFieldData("ChartIndexInBlock", "market", 0, "1")
             self.SetFieldData("ChartIndexInBlock", "period", 0, "1")
             self.SetFieldData("ChartIndexInBlock", "shcode", 0, a)
@@ -173,7 +173,7 @@ class chartindex(QThread):
 
             self.RequestService("ChartIndex", "")
             # time.sleep(2)
-            QTest.qWait(1200)
+            QTest.qWait(2400)
 
         # print(a)
         """
@@ -254,7 +254,7 @@ class chartindex(QThread):
             print("dkehl")
             self.RequestService("ChartIndex", "")
             # time.sleep(2)
-            QTest.qWait(1200)
+            QTest.qWait(2400)
 
         keylist = self.savedstockitem.item_jango.keys()
 
@@ -278,7 +278,7 @@ class chartindex(QThread):
 
             self.RequestService("ChartIndex", "")
             # time.sleep(2)
-            QTest.qWait(1200)
+            QTest.qWait(2400)
 
     @classmethod
     def get_instance(cls):
@@ -320,7 +320,7 @@ class Worker(QThread):
             time = QTime.currentTime()
             print(time.toString())
             self.t0424.t0424_request()
-            QTest.qWait(1000)
+            QTest.qWait(2000)
             print("akwsk")
             self.chartindex.chartindex_request_all()
             print("time is good")
@@ -405,15 +405,15 @@ class MyWindow(QMainWindow, form_class):
         self.test()
         self.jango_time()
 
-        QTest.qWait(1000)
+        QTest.qWait(2000)
         self.find_date()
-        QTest.qWait(1000)
+        QTest.qWait(2000)
         self.update_grid()
-        QTest.qWait(1000)
+        QTest.qWait(2000)
         self.search_to_jango()
-        QTest.qWait(1000)
+        QTest.qWait(2000)
         self.start_chart()
-        QTest.qWait(1000)
+        QTest.qWait(2000)
         self.search_to_jango()
 
         #print(cv2.__file__)
