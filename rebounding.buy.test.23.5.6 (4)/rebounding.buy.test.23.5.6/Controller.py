@@ -401,43 +401,44 @@ class XReal_S3__(QAxWidget, QThread):
                     if int(self.savedstockitem.item_jango[self.scode][14]) == 2:
                         if int(self.savedstockitem.item_jango[self.scode][12]) == 2:  # 익절선택-2자동
                             if (fasc <= self.price):  # 현재가 조건
-                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
                         elif int(self.savedstockitem.item_jango[self.scode][12]) == 1:  # 익절선택-1수동
                             if (fsc <= self.price):  # 현재가 조건
-                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-1수동")
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
                         elif int(self.savedstockitem.item_jango[self.scode][12]) == 0:  # 익절선택-0퍼센트
                             p = self.savedstockitem.item_jango[self.scode][11]  # 프로익절가
                             ll = float(l) / 100 * (100 + float(p))
-                            fll = float(round(ll))
+                            #fll = float(round(ll))
+                            fll = int(round(float(ll)))
 
                             print(fll)
                             if (fll <= self.price):  # 현재가 조건
@@ -448,18 +449,18 @@ class XReal_S3__(QAxWidget, QThread):
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
                     # if (fsc <= self.price) or (fasc <= self.price) or (fsl > self.price) or (fasl > self.price):
-                    #     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                    #     self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                     #     print("매도 감시")
 
 
@@ -488,6 +489,9 @@ class XReal_S3__(QAxWidget, QThread):
                 매수비율가 = float(((1 - (float(mesurate_stock_code) / 1000)) * (고 - 저)) + 저)
                 폭 = float(self.savedstockitem.item_view[self.scode][20])
                 반등폭2 = 2*폭
+                
+                sss = "000"
+                sssddd = ""
 
 
 
@@ -614,7 +618,7 @@ class XReal_S3__(QAxWidget, QThread):
                                             if (고돌거래량 >= 1):
                                                 if time_cule == 0:
                                                     self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
-                                                                                        mesu)
+                                                                                        mesu,sss,sssddd)
                                                     if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                         self.savedstockitem.item_view[self.scode][14] = 1
                                                         print(self.scode + "거고돌")
@@ -625,7 +629,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                                 elif time_cule == input_time:
                                                     self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
-                                                                                        mesu)
+                                                                                        mesu,sss,sssddd)
                                                     if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                         self.savedstockitem.item_view[self.scode][14] = 1
                                                         print(self.scode + "거고돌")
@@ -643,7 +647,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                                     if time_cule == 0:
                                                         self.order_stock.CSPAT00600_request(self.scode,
-                                                                                            qunti_stock_code, mesu)
+                                                                                            qunti_stock_code, mesu,sss,sssddd)
                                                         if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                             self.savedstockitem.item_view[self.scode][14] = 1
                                                             print(self.scode + "거노고돌")
@@ -655,7 +659,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                                     elif time_cule == input_time:
                                                         self.order_stock.CSPAT00600_request(self.scode,
-                                                                                            qunti_stock_code, mesu)
+                                                                                            qunti_stock_code, mesu,sss,sssddd)
                                                         if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                             self.savedstockitem.item_view[self.scode][14] = 1
                                                             print(self.scode + "거노고돌")
@@ -670,7 +674,7 @@ class XReal_S3__(QAxWidget, QThread):
                                         if (고 <= float(input_high)):
 
                                             if time_cule == 0:
-                                                self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                                self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                                 if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                     self.savedstockitem.item_view[self.scode][14] = 1
                                                     print(self.scode + "노고돌")
@@ -680,7 +684,7 @@ class XReal_S3__(QAxWidget, QThread):
 
 
                                             elif time_cule == input_time:
-                                                self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                                self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                                 if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                     self.savedstockitem.item_view[self.scode][14] = 1
                                                     print(self.scode + "노고돌")
@@ -696,7 +700,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                         if time_cule == 0:
                                             # 거노고돌,거고돌,노고돌,아님
-                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                             if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                 self.savedstockitem.item_view[self.scode][14] = 1
                                                 print(self.scode + "거노고돌,거고돌,노고돌,아님")
@@ -707,7 +711,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                         elif time_cule == input_time:
                                             # 거노고돌,거고돌,노고돌,아님
-                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                             if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                 self.savedstockitem.item_view[self.scode][14] = 1
                                                 print(self.scode + "거노고돌,거고돌,노고돌,아님")
@@ -718,7 +722,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                 else:  # 시가조건2
                                     print(self.scode + "#시가조건2")
-                                    # self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                    # self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                     # self.savedstockitem.item_view[self.scode][14] = 0
 
                         else:  # 매수비율조건 2
@@ -732,7 +736,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                                 if time_cule == 0:
                                                     self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
-                                                                                        mesu)
+                                                                                        mesu,sss,sssddd)
                                                     if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                         self.savedstockitem.item_view[self.scode][14] = 1
                                                         print(self.scode + "비거고돌")
@@ -743,7 +747,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                                 elif time_cule == input_time:
                                                     self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
-                                                                                        mesu)
+                                                                                        mesu,sss,sssddd)
                                                     if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                         self.savedstockitem.item_view[self.scode][14] = 1
                                                         print(self.scode + "비거고돌")
@@ -761,7 +765,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                                     if time_cule == 0:
                                                         self.order_stock.CSPAT00600_request(self.scode,
-                                                                                            qunti_stock_code, mesu)
+                                                                                            qunti_stock_code, mesu,sss,sssddd)
                                                         if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                             self.savedstockitem.item_view[self.scode][14] = 1
                                                             print(self.scode + "비거노고돌")
@@ -772,7 +776,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                                     elif time_cule == input_time:
                                                         self.order_stock.CSPAT00600_request(self.scode,
-                                                                                            qunti_stock_code, mesu)
+                                                                                            qunti_stock_code, mesu,sss,sssddd)
                                                         if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                             self.savedstockitem.item_view[self.scode][14] = 1
                                                             print(self.scode + "비거노고돌")
@@ -787,7 +791,7 @@ class XReal_S3__(QAxWidget, QThread):
                                         if (고 <= float(input_high)):
 
                                             if time_cule == 0:
-                                                self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                                self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                                 if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                     self.savedstockitem.item_view[self.scode][14] = 1
                                                     print(self.scode + "비노고돌")
@@ -797,7 +801,7 @@ class XReal_S3__(QAxWidget, QThread):
 
 
                                             elif time_cule == input_time:
-                                                self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                                self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                                 if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                     self.savedstockitem.item_view[self.scode][14] = 1
                                                     print(self.scode + "비노고돌")
@@ -812,7 +816,7 @@ class XReal_S3__(QAxWidget, QThread):
                                           (int(self.savedstockitem.item_view[self.scode][10]) == 1)):  # 거노고돌,거고돌,노고돌,아님
 
                                         if time_cule == 0:
-                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                             if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                 self.savedstockitem.item_view[self.scode][14] = 1
                                                 print(self.scode + "비거노고돌,비거고돌,비노고돌,아님")
@@ -822,7 +826,7 @@ class XReal_S3__(QAxWidget, QThread):
 
 
                                         elif time_cule == input_time:
-                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                             if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                 self.savedstockitem.item_view[self.scode][14] = 1
                                                 print(self.scode + "비거노고돌,비거고돌,비노고돌,아님")
@@ -834,7 +838,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                 else:  # 시가조건2
                                     print(self.scode + "#시가조건2")
-                                    # self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                    # self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                     # self.savedstockitem.item_view[self.scode][14] = 0
 
 
@@ -850,7 +854,7 @@ class XReal_S3__(QAxWidget, QThread):
 
                                 if (float(mesuprice_stock_code2) >= self.price):
                                     self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
-                                                                        mesu)
+                                                                        mesu,sss,sssddd)
                                     self.savedstockitem.item_view[self.scode][14] = 1
 
 
@@ -1013,43 +1017,43 @@ class XReal_K3__(QAxWidget, QThread):
                     if int(self.savedstockitem.item_jango[self.scode][14]) == 2:
                         if int(self.savedstockitem.item_jango[self.scode][12]) == 2:  # 익절선택-2자동
                             if (fasc <= self.price):  # 현재가 조건
-                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
                         elif int(self.savedstockitem.item_jango[self.scode][12]) == 1:  # 익절선택-1수동
                             if (fsc <= self.price):  # 현재가 조건
-                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                 self.savedstockitem.item_jango[self.scode][14] = 0
                                 print(self.scode + "익절선택-1수동")
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
                         elif int(self.savedstockitem.item_jango[self.scode][12]) == 0:  # 익절선택-0퍼센트
                             p = self.savedstockitem.item_jango[self.scode][11]  # 프로익절가
                             ll = float(l) / 100 * (100 + float(p))
-                            fll = round(float(ll))
+                            fll = int(round(float(ll)))
 
                             print(fll)
 
@@ -1063,20 +1067,20 @@ class XReal_K3__(QAxWidget, QThread):
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 2:  # 손절선택-2자동
                                 if (fasl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-2자동")
 
                             elif int(self.savedstockitem.item_jango[self.scode][13]) == 1:  # 손절선택-1수동
                                 if (fsl > self.price):  # 현재가 조건
-                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                                    self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                                     self.savedstockitem.item_jango[self.scode][14] = 0
                                     print(self.scode + "손절선택-1수동")
 
 
 
                     # if (fsc <= self.price) or (fasc <= self.price) or (fsl > self.price) or (fasl > self.price):
-                    #     self.order_stock.CSPAT00600_request(self.scode, quanti, medo)
+                    #     self.order_stock.CSPAT00600_request(self.scode, quanti, medo,sss,sssddd)
                     #     print("매도 감시")
 
             if self.scode in self.savedstockitem.item_view.keys():
@@ -1103,7 +1107,10 @@ class XReal_K3__(QAxWidget, QThread):
                 매수비율가 = float(((1 - (float(mesurate_stock_code) / 1000)) * (고 - 저)) + 저)
                 폭 = float(self.savedstockitem.item_view[self.scode][20])
                 반등폭2 = 2 * 폭
-
+                
+                sss = "000"
+                sssddd = ""
+                
                 # 15 - 저, 16 - 고, 17 - 반등저점, 18 - 고돌거래량, 19 - 고돌, 20 - 매수비율가
                 try:
                     if int(self.savedstockitem.item_view[self.scode][3]) < int(
@@ -1234,7 +1241,7 @@ class XReal_K3__(QAxWidget, QThread):
                                                 if time_cule == 0:
                                                     self.order_stock.CSPAT00600_request(self.scode,
                                                                                         qunti_stock_code,
-                                                                                        mesu)
+                                                                                        mesu,sss,sssddd)
                                                     if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                         self.savedstockitem.item_view[self.scode][14] = 1
                                                         print(self.scode + "거고돌")
@@ -1246,7 +1253,7 @@ class XReal_K3__(QAxWidget, QThread):
                                                 elif time_cule == input_time:
                                                     self.order_stock.CSPAT00600_request(self.scode,
                                                                                         qunti_stock_code,
-                                                                                        mesu)
+                                                                                        mesu,sss,sssddd)
                                                     if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                         self.savedstockitem.item_view[self.scode][14] = 1
                                                         print(self.scode + "거고돌")
@@ -1264,7 +1271,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                                     if time_cule == 0:
                                                         self.order_stock.CSPAT00600_request(self.scode,
-                                                                                            qunti_stock_code, mesu)
+                                                                                            qunti_stock_code, mesu,sss,sssddd)
                                                         if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                             self.savedstockitem.item_view[self.scode][14] = 1
                                                             print(self.scode + "거노고돌")
@@ -1276,7 +1283,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                                     elif time_cule == input_time:
                                                         self.order_stock.CSPAT00600_request(self.scode,
-                                                                                            qunti_stock_code, mesu)
+                                                                                            qunti_stock_code, mesu,sss,sssddd)
                                                         if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                             self.savedstockitem.item_view[self.scode][14] = 1
                                                             print(self.scode + "거노고돌")
@@ -1292,7 +1299,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                             if time_cule == 0:
                                                 self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
-                                                                                    mesu)
+                                                                                    mesu,sss,sssddd)
                                                 if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                     self.savedstockitem.item_view[self.scode][14] = 1
                                                     print(self.scode + "노고돌")
@@ -1303,7 +1310,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                             elif time_cule == input_time:
                                                 self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
-                                                                                    mesu)
+                                                                                    mesu,sss,sssddd)
                                                 if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                     self.savedstockitem.item_view[self.scode][14] = 1
                                                     print(self.scode + "노고돌")
@@ -1319,7 +1326,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                         if time_cule == 0:
                                             # 거노고돌,거고돌,노고돌,아님
-                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                             if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                 self.savedstockitem.item_view[self.scode][14] = 1
                                                 print(self.scode + "거노고돌,거고돌,노고돌,아님")
@@ -1330,7 +1337,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                         elif time_cule == input_time:
                                             # 거노고돌,거고돌,노고돌,아님
-                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                             if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                 self.savedstockitem.item_view[self.scode][14] = 1
                                                 print(self.scode + "거노고돌,거고돌,노고돌,아님")
@@ -1341,7 +1348,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                 else:  # 시가조건2
                                     print(self.scode + "#시가조건2")
-                                    # self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                    # self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                     # self.savedstockitem.item_view[self.scode][14] = 0
 
                         else:  # 매수비율조건 2
@@ -1356,7 +1363,7 @@ class XReal_K3__(QAxWidget, QThread):
                                                 if time_cule == 0:
                                                     self.order_stock.CSPAT00600_request(self.scode,
                                                                                         qunti_stock_code,
-                                                                                        mesu)
+                                                                                        mesu,sss,sssddd)
                                                     if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                         self.savedstockitem.item_view[self.scode][14] = 1
                                                         print(self.scode + "비거고돌")
@@ -1368,7 +1375,7 @@ class XReal_K3__(QAxWidget, QThread):
                                                 elif time_cule == input_time:
                                                     self.order_stock.CSPAT00600_request(self.scode,
                                                                                         qunti_stock_code,
-                                                                                        mesu)
+                                                                                        mesu,sss,sssddd)
                                                     if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                         self.savedstockitem.item_view[self.scode][14] = 1
                                                         print(self.scode + "비거고돌")
@@ -1386,7 +1393,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                                     if time_cule == 0:
                                                         self.order_stock.CSPAT00600_request(self.scode,
-                                                                                            qunti_stock_code, mesu)
+                                                                                            qunti_stock_code, mesu,sss,sssddd)
                                                         if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                             self.savedstockitem.item_view[self.scode][14] = 1
                                                             print(self.scode + "비거노고돌")
@@ -1397,7 +1404,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                                     elif time_cule == input_time:
                                                         self.order_stock.CSPAT00600_request(self.scode,
-                                                                                            qunti_stock_code, mesu)
+                                                                                            qunti_stock_code, mesu,sss,sssddd)
                                                         if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                             self.savedstockitem.item_view[self.scode][14] = 1
                                                             print(self.scode + "비거노고돌")
@@ -1413,7 +1420,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                             if time_cule == 0:
                                                 self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
-                                                                                    mesu)
+                                                                                    mesu,sss,sssddd)
                                                 if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                     self.savedstockitem.item_view[self.scode][14] = 1
                                                     print(self.scode + "비노고돌")
@@ -1424,7 +1431,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                             elif time_cule == input_time:
                                                 self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
-                                                                                    mesu)
+                                                                                    mesu,sss,sssddd)
                                                 if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                     self.savedstockitem.item_view[self.scode][14] = 1
                                                     print(self.scode + "비노고돌")
@@ -1447,7 +1454,7 @@ class XReal_K3__(QAxWidget, QThread):
                                             print(middle_time)
                                             print(input_time)
                                             print(int(self.savedstockitem.item_view[self.scode][22]))
-                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                             if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                 self.savedstockitem.item_view[self.scode][14] = 1
                                                 print(self.scode + "비거노고돌,비거고돌,비노고돌,아님")
@@ -1459,7 +1466,7 @@ class XReal_K3__(QAxWidget, QThread):
                                         elif time_cule == input_time:
                                             print(time_cule)
                                             print(input_time)
-                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                            self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                             if int(self.savedstockitem.item_view[self.scode][14]) == 3:
                                                 self.savedstockitem.item_view[self.scode][14] = 1
                                                 print(self.scode + "비거노고돌,비거고돌,비노고돌,아님")
@@ -1471,7 +1478,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                 else:  # 시가조건2
                                     print(self.scode + "#시가조건2")
-                                    # self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu)
+                                    # self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code, mesu,sss,sssddd)
                                     # self.savedstockitem.item_view[self.scode][14] = 0
 
                     else: ##plus buy
@@ -1486,7 +1493,7 @@ class XReal_K3__(QAxWidget, QThread):
 
                                 if (float(mesuprice_stock_code2) >= self.price):
                                     self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
-                                                                        mesu)
+                                                                        mesu,sss,sssddd)
                                     self.savedstockitem.item_view[self.scode][14] = 1
 
 
