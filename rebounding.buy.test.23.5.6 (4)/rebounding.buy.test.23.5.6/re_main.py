@@ -159,7 +159,7 @@ class chartindex(QThread):
             # print(b)
             # self.RemoveService("ChartIndex", "")
             # self.SetFieldData("ChartIndexInBlock", "indexid", 0, b)
-            self.SetFieldData("ChartIndexInBlock", "indexname", 0, "피보나치매수매도.그리드.9일")
+            self.SetFieldData("ChartIndexInBlock", "indexname", 0, "피보나치매수매도1")
             self.SetFieldData("ChartIndexInBlock", "market", 0, "1")
             self.SetFieldData("ChartIndexInBlock", "period", 0, "1")
             self.SetFieldData("ChartIndexInBlock", "shcode", 0, a)
