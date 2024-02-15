@@ -850,7 +850,7 @@ class XReal_S3__(QAxWidget, QThread):
                                 # print(mesuprice_stock_code2)
                                 # print(type(mesuprice_stock_code2))
 
-                                mesuprice_stock_code2 = 매수비율가 - (폭 * 1.85)
+                                mesuprice_stock_code2 = 매수비율가 - (폭 * 1.25)
 
                                 if (float(mesuprice_stock_code2) >= self.price):
                                     self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
@@ -1489,7 +1489,7 @@ class XReal_K3__(QAxWidget, QThread):
                                 # print(mesuprice_stock_code2)
                                 # print(type(mesuprice_stock_code2))
 
-                                mesuprice_stock_code2 = 매수비율가 - (폭 * 1.85)
+                                mesuprice_stock_code2 = 매수비율가 - (폭 * 1.25)
 
                                 if (float(mesuprice_stock_code2) >= self.price):
                                     self.order_stock.CSPAT00600_request(self.scode, qunti_stock_code,
