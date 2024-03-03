@@ -244,12 +244,12 @@ class t0424(QAxWidget, QThread):
                         print(result_code)
                         if result_code == 0:
                             if expcode not in self.savedstockitem.item_jango.keys():
-                                self.savedstockitem.item_jango[expcode] = ['', '', '', '', '', '', '', '9999999', '0', '9999999', '0','퍼샌트익절가','익절선택','손절선택', '2' ,'최저점','당일시가']
+                                self.savedstockitem.item_jango[expcode] = ['', '', '', '', '', '', '', '9999999', '0', '9999999', '0','퍼샌트익절가','익절선택','손절선택', '2' ,'0','당일시가']
                         else:
                             if expcode not in self.savedstockitem.item_jango.keys():
                                 self.savedstockitem.item_jango[expcode] = ['', '', '', '', '', '', '', '9999999', '0',
                                                                            '9999999', '0', '퍼샌트익절가', '익절선택', '손절선택',
-                                                                           '2', '최저점', '당일시가']
+                                                                           '2', '0', '당일시가']
 
                             #익절선택 자동 2 수동 1 퍼센트 0 / 손절 선택 자동 2 수동 1
                     else:
@@ -257,7 +257,7 @@ class t0424(QAxWidget, QThread):
                         if expcode not in self.savedstockitem.item_jango.keys():
                             self.savedstockitem.item_jango[expcode] = ['', '', '', '', '', '', '', '9999999', '0',
                                                                        '9999999', '0', '퍼샌트익절가', '익절선택', '손절선택', '2',
-                                                                       "최저점", '당일시가']
+                                                                       "0", '당일시가']
 
 
 
@@ -266,7 +266,7 @@ class t0424(QAxWidget, QThread):
                     if expcode not in self.savedstockitem.item_jango.keys():
                         self.savedstockitem.item_jango[expcode] = ['', '', '', '', '', '', '', '9999999', '0',
                                                                    '9999999', '0', '퍼샌트익절가', '익절선택', '손절선택', '2',
-                                                                   "최저점", '당일시가']
+                                                                   "0", '당일시가']
 
 
                 #tt = self.savedstockitem.item_jango[expcode]
@@ -277,6 +277,7 @@ class t0424(QAxWidget, QThread):
                 self.savedstockitem.item_jango[expcode][4] = self.GetFieldData("CSPAQ12300OutBlock3", "BnsBaseBalQty", i)
                 self.savedstockitem.item_jango[expcode][5] = self.GetFieldData("CSPAQ12300OutBlock3", "CrdtAmt", i)
                 self.savedstockitem.item_jango[expcode][6] = self.GetFieldData("CSPAQ12300OutBlock3", "LoanDt", i)
+                #self.savedstockitem.item_jango[expcode][15] = 0
                 if self.savedstockitem.item_jango[expcode][6] == "":
                     self.savedstockitem.item_jango[expcode][6] = '0'
 

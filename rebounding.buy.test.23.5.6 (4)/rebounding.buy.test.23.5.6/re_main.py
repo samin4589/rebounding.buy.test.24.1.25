@@ -10,6 +10,9 @@ from PyQt5.QtCore import QTime
 
 
 from PyQt5.QtTest import *
+import smtplib
+from email.mime.text import MIMEText
+
 
 
 def resource_path(relative_path):
@@ -58,6 +61,27 @@ class chartindex(QThread):
 
                     반등폭 = float(고 - 저) * 0.618 - float(고 - 저) * 0.5
 
+                    """
+                    #if self.savedstockitem.item_jango[self.i][15] != float(반등저점):
+                    p = self.savedstockitem.item_jango[self.scode][11]  # 프로익절가
+                    ll = float(반등저점) / 100 * (100 + float(p))
+                    fll = int(round(float(ll)))
+
+                    print(fll)
+                    """
+                    if float(self.savedstockitem.item_jango[self.i][15]) != float(반등저점):
+                        l = 반등저점
+
+                        #print(self.savedstockitem.item_jango[self.scode][8])
+                        p = self.savedstockitem.item_jango[self.i][11]
+                        ll = float(l) / 100 * (100 + float(p))
+                        fll = int(round(float(ll)))
+                        ii = self.savedstockitem.item_jango[self.i][1]
+                        self.sendmail(fll,ii)
+                        print("샌드")
+
+
+
                     self.savedstockitem.item_jango[self.i][7] = str(
                         round(float(반등저점) + 1.8 * (float(고 - 저) * 0.618 - float(고 - 저) * 0.5)))
 
@@ -65,6 +89,9 @@ class chartindex(QThread):
                     self.savedstockitem.item_jango[self.i][8] = str(round(c))
                     self.savedstockitem.item_jango[self.i][15] = float(반등저점)
                     # self.savedstockitem.item_jango[self.i][16] = str(당시가)
+
+
+
 
         except:
             print("잔고조회안함")
@@ -142,6 +169,32 @@ class chartindex(QThread):
         except:
             print("매수부 조회안됨")
 
+    def sendmail(self, fll, ii):
+
+        # 587포트 및 465포트 존재
+        smtp = smtplib.SMTP('smtp.gmail.com', 587)
+
+        smtp.ehlo()
+
+        smtp.starttls()
+
+        print(ii)
+        print(fll)
+
+
+        # 로그인을 통해 지메일 접속
+        smtp.login('vcxz1245@gmail.com', 'kquu jwfy abeh kzpt')
+
+        # 내용을 입력하는 MIMEText => 다른 라이브러리 사용 가능
+        msg = MIMEText('내용 : 본문 내용')
+        msg['Subject'] =  '종목코드:' + str(ii)+ ' 목표가:' + str(fll)
+
+        # 이메일을 보내기 위한 설정(Cc도 가능)
+        smtp.sendmail('vcxz1245@gmail.com', 'strademart@naver.com', msg.as_string())
+
+        # 객체 닫기
+        smtp.quit()
+
     def chartindex_request(self):
 
         """
@@ -158,13 +211,14 @@ class chartindex(QThread):
             # b = self.savedstockitem.item_jango[self.i][16]
             # print(b)
             # self.RemoveService("ChartIndex", "")
+            #피보나치매수매도.그리드.9일
             # self.SetFieldData("ChartIndexInBlock", "indexid", 0, b)
-            self.SetFieldData("ChartIndexInBlock", "indexname", 0, "피보나치매수매도1")
+            self.SetFieldData("ChartIndexInBlock", "indexname", 0, "피보나치매수매도.그리드.9일")
             self.SetFieldData("ChartIndexInBlock", "market", 0, "1")
-            self.SetFieldData("ChartIndexInBlock", "period", 0, "1")
+            self.SetFieldData("ChartIndexInBlock", "period", 0, "2")
             self.SetFieldData("ChartIndexInBlock", "shcode", 0, a)
             self.SetFieldData("ChartIndexInBlock", "qrycnt", 0, "500")
-            self.SetFieldData("ChartIndexInBlock", "ncnt", 0, "15")
+            self.SetFieldData("ChartIndexInBlock", "ncnt", 0, 0)
             self.SetFieldData("ChartIndexInBlock", "sdate", 0, "")
             self.SetFieldData("ChartIndexInBlock", "edate", 0, "")
             self.SetFieldData("ChartIndexInBlock", "Isamend", 0, "0")
@@ -200,10 +254,10 @@ class chartindex(QThread):
 
         self.SetFieldData("ChartIndexInBlock", "indexname", 0, "피보나치매수매도1")
         self.SetFieldData("ChartIndexInBlock", "market", 0, "1")
-        self.SetFieldData("ChartIndexInBlock", "period", 0, "1")
+        self.SetFieldData("ChartIndexInBlock", "period", 0, "2")
         self.SetFieldData("ChartIndexInBlock", "shcode", 0, self.z)
         self.SetFieldData("ChartIndexInBlock", "qrycnt", 0, "500")
-        self.SetFieldData("ChartIndexInBlock", "ncnt", 0, "15")
+        self.SetFieldData("ChartIndexInBlock", "ncnt", 0, 0)
         self.SetFieldData("ChartIndexInBlock", "sdate", 0, "")
         self.SetFieldData("ChartIndexInBlock", "edate", 0, "")
         self.SetFieldData("ChartIndexInBlock", "Isamend", 0, "0")
@@ -240,12 +294,12 @@ class chartindex(QThread):
 
             # self.RemoveService("ChartIndex", "")
             print("dkehl")
-            self.SetFieldData("ChartIndexInBlock", "indexname", 0, "피보나치매수매도1")
+            self.SetFieldData("ChartIndexInBlock", "indexname", 0, "피보나치매수매도.그리드.9일")
             self.SetFieldData("ChartIndexInBlock", "market", 0, "1")
-            self.SetFieldData("ChartIndexInBlock", "period", 0, "1")
+            self.SetFieldData("ChartIndexInBlock", "period", 0, "2")
             self.SetFieldData("ChartIndexInBlock", "shcode", 0, a)
             self.SetFieldData("ChartIndexInBlock", "qrycnt", 0, "500")
-            self.SetFieldData("ChartIndexInBlock", "ncnt", 0, "15")
+            self.SetFieldData("ChartIndexInBlock", "ncnt", 0, 0)
             self.SetFieldData("ChartIndexInBlock", "sdate", 0, "")
             self.SetFieldData("ChartIndexInBlock", "edate", 0, "")
             self.SetFieldData("ChartIndexInBlock", "Isamend", 0, "0")
@@ -256,18 +310,18 @@ class chartindex(QThread):
             # time.sleep(2)
             QTest.qWait(2400)
 
-        keylist = self.savedstockitem.item_jango.keys()
+        keylist1 = self.savedstockitem.item_jango.keys()
 
-        for self.i in keylist:
-            a = self.i
+        for self.i in keylist1:
+            a1 = self.i
             # print("chart_request")
 
             # self.RemoveService("ChartIndex", "")
 
-            self.SetFieldData("ChartIndexInBlock", "indexname", 0, "피보나치매수매도1")
+            self.SetFieldData("ChartIndexInBlock", "indexname", 0, "피보나치매수매도.그리드.9일")
             self.SetFieldData("ChartIndexInBlock", "market", 0, "1")
             self.SetFieldData("ChartIndexInBlock", "period", 0, "1")
-            self.SetFieldData("ChartIndexInBlock", "shcode", 0, a)
+            self.SetFieldData("ChartIndexInBlock", "shcode", 0, a1)
             self.SetFieldData("ChartIndexInBlock", "qrycnt", 0, "500")
             self.SetFieldData("ChartIndexInBlock", "ncnt", 0, "15")
             self.SetFieldData("ChartIndexInBlock", "sdate", 0, "")
